@@ -2,6 +2,7 @@
   text-align: center;
 }
 
+/* for the part at the top with information */
 .header {
   background-color: #3481ed;
   min-height: 10vh;
@@ -11,55 +12,127 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: #ffffff;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+h1 {
+  color: white;
+  margin-left: 20px;
 }
 
-.question-container {
-  padding-left: 3em;
-  padding-right: 3em;
-  margin-top: 3em;
-}
-
-table {
-  display: flex;
-  justify-content: center;
-  border: 1px solid gray;
-}
-td {
-  border: 1px solid gray;
-  width: 30em;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* footer styling */
+.footer {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #3481ed;
+  font-size: calc(15px);
   color: white;
+  text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+/* for the display of each question (prompt+answer included)*/
+.question-container {
+  border-style: solid;
+  border-width: 1px;
+  border-color:  #F8F8FF;
+  border-radius: 5px;
+  box-shadow: 2px 2px #e1e7f0;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 20px;
+  margin-left: 60px;
+  margin-right: 60px;
+  background-color: #F8F8FF;
+}
+.question-container:hover {
+  transform: scale(1.01);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* for the display of individual prompt boxes (padding is for text and margin is for box)*/
+.prompt-container {
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  background-color: #F8F8FF;
+}
+
+/* same as prompt container but with an indent for answer choices display*/
+.answer-container {
+  text-align: left;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 2px;
+  margin-bottom: 5px;
+  background-color: #F8F8FF;
+}
+
+/* the overall container around the entire quiz */
+.page-container {
+  border-style: solid;
+  border-width: 1px;
+  border-color:  #FFFFFF;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+  background-color: #FFFFFF;
+}
+
+/* submit button */
+.button {
+  background-color: #3481ed;
+  text-align: center;
+  border: none;
+  display: inline-block;
+  font-size: 20px;
+  color: #ffffff;
+  border-radius: 5px;
+  padding: 10px 24px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.button:hover {
+  background-color: #e1e7f0;
+  color: black;
+}
+.button:active {
+  background-color: #e1e7f0;
+  transform: translateY(4px);
+}
+
+/* radio button styling */
+.radio {
+}
+.radio:hover {
+  cursor: pointer;
+}
+
+/* dropdown box styling */
+.dropdown {
+  width: 100px;
+  padding: 3px;
+  margin: 0px;
+}
+
+/* blank box styling */
+.blank {
+  width: 150px;
 }
