@@ -16,14 +16,18 @@ export const quizData = [
   {
     type: "mcq",
     question: "What are the official colors of FBLA?",
-    option1: "blue and gold", option2: "red and white", option3: "red and blue", option4: "blue and gold",
+    choices: ["blue and gold", "red and white", "red and blue", "blue and gold",],
     answer: "blue and gold"
   },
   {
     type: "mcq",
     question: "Key words found in the FBLA goals include:",
-    option1: "confidence, understanding, efficient, scholarship", option2: "seek, sincere, abide, initiative",
-    option3: "promise, aims, qualities, active", option4: "manner, directors, regulations, cooperations",
+    choices: [
+      "confidence, understanding, efficient, scholarship", 
+       "seek, sincere, abide, initiative",
+       "promise, aims, qualities, active",
+       "manner, directors, regulations, cooperations"
+    ],
     answer: "confidence, understanding, efficient, scholarship"
   },
   {
