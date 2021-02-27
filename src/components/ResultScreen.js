@@ -1,29 +1,37 @@
 import React from 'react';
-import "../App.css";
+import "../Results.css";
 
-const Result = ({score,ques,ans,playAgain}) => {
+// creates the table with the values to determine correct/incorrect
+const Result = ({score, ques, ans, playAgain, tryAgain}) => {
   //alert(ans[1]);
-  let table = [];
+  let answerTable = [];
   for (let i = 0; i < ques.length; i++) {
      let children = [];
-
-     children.push(<td>{ques[i].question}</td>, <td>{ques[i].answer}</td>, <td>{ans[i]}</td>, <td> {ques[i].answer === ans[i]? 1 : 0}</td>)
-     table.push(<tr>{children}</tr>)
+     children.push(
+       <td>{ques[i].question}</td>,
+       <td>{ans[i] === " " ? " " : ans[i]}</td>,
+       <td>{ques[i].answer}</td>,
+       <td> {ques[i].answer === ans[i] ? 1 : 0}</td>
+     )
+     answerTable.push(<tr>{children}</tr>)
   }
 
+// returns the table with printable results and buttons to allow for further navigation
  return (
   <div className="score-board">
-    <div className="score"> Your score is {score} / 5 correct answer ! ! ! </div>
-    <div className="scoreTable">
-    <table border="1">
-      <tr><th>ques</th><th>Ans</th><th>your ans</th><th>score</th></tr>
-      {table}
-    </table>
+    <div className="score-table-container">
+      <div className="score"> Score: {score} / 5 </div>
+    </div>
+    <div className="score-table-container">
+      <table>
+        <tr><th>Question</th><th>Your Answer</th><th>Correct Answer</th><th>Score</th></tr>
+        {answerTable}
+      </table>
     </div>
     <button className="button" onClick={playAgain} > Play Again </button>
+    <button className="button" onClick={tryAgain} > Try Again </button>
   </div>
  )
 };
 
 export default Result;
-
