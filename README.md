@@ -5,7 +5,7 @@ Demo: [https://quizfbla.herokuapp.com/](https://quizfbla.herokuapp.com/) <br>
 Github Repository: [https://github.com/hannahjzhang/fblaquiz](https://github.com/hannahjzhang/fblaquiz) <br>
 
 # To Run
-1. cd into the repo: `cd fblaquiz`
+1. cd into the repo: `cd fblaquiz-master`
 2. install npm: `npm install`
 3. run the app in development mode `npm start`
 4. open [http://localhost:3000](http://localhost:3000) to view it in the browser
