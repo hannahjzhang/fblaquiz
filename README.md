@@ -32,17 +32,16 @@ After clicking Submit, a screen with submission details shows up. <br>
   * Try Again: takes you back to your original questions to try Again
 * Image
 ![Results Page](public/resultspage.png "Results Page")
-<br>
 
 # How to Navigate the Folders
-* src – Description of Important Files: <br>
+* src – Description of Important Files:
   * App.css: contains the styling for the questions page
   * Results.css: contains the styling for the page with results page
   * data.js: contains the database of 50 questions stored in json format
   * App.js: runs the Question component
   * Quiz.js: creates a Question component that displays the questions and runs commands accordingly
   * components/ResultScreen.js: creates and return the table with the results
-* public: <br>
+* public:
   * index.html: basic site setup
   * quiz.ico: favicon photo
   * questionpage.png & resultspage: photos for readme
