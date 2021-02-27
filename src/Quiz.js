@@ -142,14 +142,12 @@ class Questions extends React.Component {
         rightCnt ++;
       }
     }
-    this.setState({
-      score: rightCnt
-    })
+    return rightCnt;
   }
   // sends an alert to the user (to be called when check answer is clicked)
   checkAns() {
-    this.computeScore();
-    alert(this.state.score + " out of " + this.state.questionArray.length + " are correct");
+    let rightCnt = this.computeScore();
+    alert(rightCnt + " out of " + this.state.questionArray.length + " are correct");
   }
   // to be called when submit answer is clicked and shows the result if all questions have been answered
   submitAns() {
@@ -167,9 +165,10 @@ class Questions extends React.Component {
       return;
     }
     else {
-      this.computeScore();
+      let rightCnt = this.computeScore();
       this.setState({
-        showResult: true
+        showResult: true,
+        score: rightCnt,
       })
     }
   }
