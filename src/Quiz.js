@@ -49,9 +49,9 @@ function TF(props) {
       {/* display the answer */}
       <div key="answer" class="answer-container">
         {/* when clicked, call select to store answer*/}
-        <input required type="radio" name={props.num} className="radio" onClick={()=>{props.selected(props.data.option1);}} />
+        <input required type="radio" name={props.num} className="radio" defaultChecked={props.ans === props.data.option1} onClick={()=>{props.selected(props.data.option1);}} />
           <label> {props.data.option1}</label> <br />
-        <input required type="radio" name={props.num} className="radio" onClick={()=>{props.selected(props.data.option2);}} />
+        <input required type="radio" name={props.num} className="radio" defaultChecked={props.ans === props.data.option2} onClick={()=>{props.selected(props.data.option2);}} />
           <label> {props.data.option2}</label>
       </div>
     </div>
@@ -71,7 +71,7 @@ function Multiple(props) {
         {props.data.options.map((val,key)=>{
           return (
             <div>
-              <input required type="radio" name={props.num} className="radio" onClick={()=>{props.selected(val);}}/>
+              <input required type="radio" name={props.num} className="radio" defaultChecked={props.ans === val} onClick={()=>{props.selected(val);}}/>
               <label for="option">{val}</label> <br />
             </div>
           );
@@ -89,7 +89,7 @@ function Dropdown(props) {
     <div className="question-container">
       <div key="question" className="prompt-container">
         {props.num}) {str.substring(0, idx)}
-          <select required name="Dropdown" className="dropdown" onChange={(e)=>{props.selected(e.target.value)}}>
+          <select required name="Dropdown" className="dropdown" value={props.ans} onChange={(e)=>{props.selected(e.target.value)}}>
             {props.data.options.map((val,key)=>{
               return <option key={key} value={val}> {val} </option>;
             })}
@@ -107,7 +107,7 @@ function Blank(props) {
     <div className="question-container">
       <div key="question" className="prompt-container">
         {props.num}) {str.substring(0, index)}
-        <input required type="text" className="blank" onChange={(e)=>{props.selected(e.target.value)}}/>
+        <input required type="text" className="blank" value={props.ans} onChange={(e)=>{props.selected(e.target.value)}}/>
         {str.substring(index+6)}
       </div>
     </div>
@@ -119,20 +119,33 @@ class Questions extends React.Component {
   constructor(props) {
     super(props);
     let num = props.num;
-    this.state = {
-      num: num,
-      questionArray: generateQuestions(num),
-      answerArray: Array(num).fill(" "),
-      showResult : false,
-      score: 0,
+    let stateJSON = localStorage.quizstate;
+    if (stateJSON !== undefined) {
+      // alert(stateJSON);
+      this.state = JSON.parse(stateJSON);
     }
+    else {
+      this.state = {
+        num: num,
+        questionArray: generateQuestions(num),
+        answerArray: Array(num).fill(" "),
+        showResult : false,
+        score: 0,
+      }
+    }
+  }
+  saveState() {
+    // alert("saving" + JSON.stringify(this.state) );
+    localStorage.setItem("quizstate", JSON.stringify(this.state));
   }
   // sets up functions to manipulate answers & check user input
   // sets the answer based on the data
   setAns(key, answer) {
     const myArr = this.state.answerArray.slice();
     myArr[key] = answer;
-    this.setState({answerArray:myArr})
+    this.setState({
+      answerArray:myArr
+    }, ()=> {this.saveState();})
   }
   // computes the current score
   computeScore () {
@@ -205,16 +218,16 @@ class Questions extends React.Component {
           {/* from the constructor above, get the questions */}
             {this.state.questionArray.map((data, key) => {
               if (data.type === "truefalse") {
-                return (<TF data={data} num={key+1} selected={answer=>this.setAns(key, answer)} />);
+                return (<TF data={data} num={key+1} ans={this.state.answerArray[key]} selected={answer=>this.setAns(key, answer)} />);
               }
               else if (data.type === "mcq") {
-                return (<Multiple data={data} num={key+1} selected={answer=>this.setAns(key, answer)}/>);
+                return (<Multiple data={data} num={key+1} ans={this.state.answerArray[key]} selected={answer=>this.setAns(key, answer)}/>);
               }
               else if (data.type === "blank"){
-                return (<Blank data={data} num={key+1} selected={answer=>this.setAns(key, answer)}/>);
+                return (<Blank data={data} num={key+1} ans={this.state.answerArray[key]} selected={answer=>this.setAns(key, answer)}/>);
               }
               else {
-                return (<Dropdown data={data} num={key+1} selected={answer=>this.setAns(key, answer)}/>);
+                return (<Dropdown data={data} num={key+1} ans={this.state.answerArray[key]} selected={answer=>this.setAns(key, answer)}/>);
               }
             })}
             <button className="button" onClick = {()=>this.checkAns()}>Check Answer</button>
