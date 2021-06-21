@@ -1,5 +1,5 @@
 # About the Project
-This project was made for the Coding & Programming  event at California FBLA SLC.  <br>
+This project was made for the Coding & Programming  event at FBLA NLC.  <br>
 It features an original computer program that generates a five-question quiz. <br>
 Demo: [https://quizfbla.herokuapp.com/](https://quizfbla.herokuapp.com/) <br>
 Github Repository: [https://github.com/hannahjzhang/fblaquiz](https://github.com/hannahjzhang/fblaquiz) <br>
